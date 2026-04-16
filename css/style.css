@@ -442,3 +442,52 @@ body {
     }
 }
 
+/* --- Penambahan Navigasi Responsif --- */
+
+/* Sembunyikan tombol hamburger secara default di desktop */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #3b82f6;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Munculkan hamburger di HP */
+    }
+
+    .nav-links {
+        display: none; /* Sembunyikan menu aslinya */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        border-bottom: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        gap: 1rem;
+        z-index: 1000;
+    }
+
+    /* Class untuk menampilkan menu saat diklik */
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+
+    .login-btn, .logout-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Editor Waraga</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-layer-group"></i>
+                <span>Waraga Admin</span>
+            </div>
+            <div class="nav-links">
+                <span class="admin-badge"><i class="fas fa-shield-alt"></i> Mode Admin</span>
+                <a href="index.html">Beranda</a>
+                <a href="#" id="logoutBtnAdmin" class="logout-btn">Keluar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-folder-tree"></i> File Manager</h3>
+                <div class="sidebar-actions">
+                    <button class="btn-new-folder" id="newFolderBtn" title="Buat Folder Baru">
+                        <i class="fas fa-folder-plus"></i> Folder
+                    </button>
+                    <button class="btn-new-doc" id="newDocBtnSidebar" title="Buat Dokumen Baru">
+                        <i class="fas fa-file-plus"></i> Dokumen
+                    </button>
+                </div>
+            </div>
+            <div class="folder-tree" id="folderTree">
+                <!-- Folder tree akan dimuat di sini -->
+            </div>
+        </div>
+
+        <div class="editor-area">
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="breadcrumb-item active">Root</span>
+            </div>
+            
+            <div class="editor-toolbar">
+                <button class="tool-btn" data-command="bold" title="Tebal"><i class="fas fa-bold"></i></button>
+                <button class="tool-btn" data-command="italic" title="Miring"><i class="fas fa-italic"></i></button>
+                <button class="tool-btn" data-command="underline" title="Garis Bawah"><i class="fas fa-underline"></i></button>
+                <span class="separator"></span>
+                <button class="tool-btn" data-command="justifyLeft" title="Rata Kiri"><i class="fas fa-align-left"></i></button>
+                <button class="tool-btn" data-command="justifyCenter" title="Rata Tengah"><i class="fas fa-align-center"></i></button>
+                <button class="tool-btn" data-command="justifyRight" title="Rata Kanan"><i class="fas fa-align-right"></i></button>
+                <span class="separator"></span>
+                <button class="tool-btn" data-command="insertUnorderedList" title="List"><i class="fas fa-list-ul"></i></button>
+                <button class="tool-btn" data-command="insertOrderedList" title="Numbered List"><i class="fas fa-list-ol"></i></button>
+                <span class="separator"></span>
+                <select class="font-size-select" id="fontSize">
+                    <option value="4">Normal</option>
+                    <option value="1">Heading 1</option>
+                    <option value="2">Heading 2</option>
+                    <option value="3">Heading 3</option>
+                </select>
+                <span class="separator"></span>
+                <button class="tool-btn" id="uploadImageBtn" title="Upload Gambar">
+                    <i class="fas fa-image"></i> Gambar
+                </button>
+                <!-- fitur video, audio, dan file coming soon... -->
+                <!-- <input type="file" id="imageFileInput" accept="image/*" style="display:none;">
+                <button class="tool-btn" id="uploadVideoBtn" title="Upload Video">
+                    <i class="fas fa-video"></i> Video
+                </button>
+                <input type="file" id="videoFileInput" accept="video/*" style="display:none;">
+                <button class="tool-btn" id="uploadAudioBtn" title="Upload Audio">
+                    <i class="fas fa-music"></i> Audio
+                </button>
+                <input type="file" id="audioFileInput" accept="audio/*" style="display:none;">
+                <button class="tool-btn" id="uploadFileBtn" title="Upload File">
+                    <i class="fas fa-paperclip"></i> File
+                </button> -->
+                <input type="file" id="fileFileInput" style="display:none;">
+            </div>
+
+            <div class="editor-container">
+                <input type="text" class="doc-title-input" id="docTitle" placeholder="Judul Dokumen...">
+                <div class="editor-content" id="editor" contenteditable="true">
+                   
+                </div>
+            </div>
+
+            <div class="editor-actions">
+                <button class="btn-save" id="saveDocBtn"><i class="fas fa-save"></i> Simpan</button>
+                <button class="btn-preview" id="previewBtn"><i class="fas fa-eye"></i> Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Buat Folder -->
+    <div id="folderModal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3><i class="fas fa-folder-plus"></i> Buat Folder Baru</h3>
+                <span class="close-modal" data-modal="folderModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama Folder:</label>
+                    <input type="text" id="folderName" placeholder="Masukkan nama folder..." class="folder-input">
+                </div>
+                <div class="form-group">
+                    <label>Lokasi:</label>
+                    <select id="folderParent" class="folder-select"></select>
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn-create" id="createFolderBtn"><i class="fas fa-check"></i> Buat Folder</button>
+                    <button class="btn-cancel" id="cancelFolderBtn"><i class="fas fa-times"></i> Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Rename -->
+    <div id="renameModal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3 id="renameTitle"><i class="fas fa-edit"></i> Rename</h3>
+                <span class="close-modal" data-modal="renameModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama Baru:</label>
+                    <input type="text" id="renameInput" placeholder="Masukkan nama baru..." class="folder-input">
+                </div>
+                <div class="modal-buttons">
+                    <button class="btn-apply" id="confirmRenameBtn"><i class="fas fa-check"></i> Rename</button>
+                    <button class="btn-cancel" id="cancelRenameBtn"><i class="fas fa-times"></i> Batal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Editor Panel untuk Edit Media -->
+    <div id="floatingEditorPanel" class="floating-panel">
+        <div class="panel-header" id="panelHeader">
+            <div class="panel-title">
+                <i class="fas fa-edit" id="panelIcon"></i>
+                <span id="panelTitle">Editor Media</span>
+            </div>
+            <div class="panel-controls">
+                <button class="panel-minimize" id="panelMinimize"><i class="fas fa-minus"></i></button>
+                <button class="panel-close" id="panelClose"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="panel-body" id="panelBody">
+            <div class="media-preview-container" id="mediaPreviewContainer"></div>
+            
+            <div class="form-group">
+                <label>Ukuran (Lebar):</label>
+                <div class="range-container">
+                    <input type="range" id="mediaWidth" min="50" max="800" value="300" step="10">
+                    <span id="widthValue" class="value-display">300px</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Posisi & Wrap Text:</label>
+                <div class="position-buttons">
+                    <button class="pos-btn" data-position="left">
+                        <i class="fas fa-align-left"></i>
+                        <span>Kiri</span>
+                        <small>Teks di kanan</small>
+                    </button>
+                    <button class="pos-btn" data-position="center">
+                        <i class="fas fa-align-center"></i>
+                        <span>Tengah</span>
+                        <small>Teks di atas/bawah</small>
+                    </button>
+                    <button class="pos-btn" data-position="right">
+                        <i class="fas fa-align-right"></i>
+                        <span>Kanan</span>
+                        <small>Teks di kiri</small>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Jarak dari Teks (Margin):</label>
+                <div class="margin-controls">
+                    <div class="margin-input">
+                        <label>Atas:</label>
+                        <input type="number" id="marginTop" value="10" min="0" max="50" step="5">
+                        <span>px</span>
+                    </div>
+                    <div class="margin-input">
+                        <label>Kanan:</label>
+                        <input type="number" id="marginRight" value="20" min="0" max="50" step="5">
+                        <span>px</span>
+                    </div>
+                    <div class="margin-input">
+                        <label>Bawah:</label>
+                        <input type="number" id="marginBottom" value="10" min="0" max="50" step="5">
+                        <span>px</span>
+                    </div>
+                    <div class="margin-input">
+                        <label>Kiri:</label>
+                        <input type="number" id="marginLeft" value="0" min="0" max="50" step="5">
+                        <span>px</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" id="styleGroup">
+                <label>Style Gambar/Video:</label>
+                <div class="style-buttons">
+                    <button class="style-btn" data-style="none">
+                        <i class="fas fa-square"></i>
+                        <span>Normal</span>
+                    </button>
+                    <button class="style-btn" data-style="rounded">
+                        <i class="fas fa-border-all"></i>
+                        <span>Rounded</span>
+                    </button>
+                    <button class="style-btn" data-style="shadow">
+                        <i class="fas fa-eye"></i>
+                        <span>Shadow</span>
+                    </button>
+                    <button class="style-btn" data-style="border">
+                        <i class="fas fa-border-style"></i>
+                        <span>Border</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group" id="audioControlsGroup" style="display:none;">
+                <label>Kontrol Audio:</label>
+                <div class="audio-controls">
+                    <button class="audio-control-btn" id="playAudioBtn">
+                        <i class="fas fa-play"></i> Play
+                    </button>
+                    <button class="audio-control-btn" id="pauseAudioBtn">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
+                    <input type="range" id="audioVolume" min="0" max="100" value="80">
+                    <span>Volume</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Efek Tambahan:</label>
+                <div class="effect-checkboxes">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="effectOpacity"> Transparan
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="effectGrayscale"> Hitam Putih
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="effectBlur"> Blur
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="effectRotate"> Rotate 90°
+                    </label>
+                </div>
+            </div>
+
+            <div class="panel-buttons">
+                <button class="btn-apply" id="applyChanges"><i class="fas fa-check"></i> Terapkan</button>
+                <button class="btn-remove" id="removeMedia"><i class="fas fa-trash"></i> Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/editor.js"></script>
+    <script>
+        // Cek apakah admin sudah login, jika belum redirect ke login
+        if (!Auth.isAdmin()) {
+            window.location.href = 'login.html';
+        }
+        
+        // Handle logout button di admin page
+        document.getElementById('logoutBtnAdmin').addEventListener('click', (e) => {
+            e.preventDefault();
+            Auth.logout();
+        });
+    </script>
+</body>
+</html>

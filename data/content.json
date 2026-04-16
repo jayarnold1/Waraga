@@ -1,0 +1,10 @@
+{
+  "documents": [
+    {
+      "id": "1733123456789",
+      "title": "Selamat Datang di Waraga",
+      "content": "<h1>Selamat Datang!</h1><p>Ini adalah platform dokumentasi modern yang memungkinkan Anda membuat dan mengelola dokumen dengan mudah untuk keperluan mendesak.</p><h2>Fitur Unggulan</h2><ul><li>Editor rich text seperti Microsoft Word</li><li>Mendukung gambar, video, dan file</li><li>Hanya admin yang bisa mengedit</li><li>UI modern seperti Dicoding.com</li></ul>",
+      "updatedAt": "2024-12-02T10:00:00.000Z"
+    }
+  ]
+}

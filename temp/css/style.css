@@ -1,0 +1,416 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f7fa;
+    color: #1e293b;
+}
+
+.navbar {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3b82f6;
+}
+
+.logo i {
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #3b82f6;
+}
+
+.login-btn {
+    background: #3b82f6;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.logout-btn {
+    background: #ef4444;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.admin-badge {
+    background: #fef3c7;
+    color: #d97706;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero .highlight {
+    color: #fbbf24;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary {
+    background: white;
+    color: #667eea;
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.docs-section h2 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+}
+
+.docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.doc-card {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.doc-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.doc-card h3 {
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+}
+
+.doc-card p {
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+/* Login Page */
+.login-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+}
+
+.login-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header i {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 1rem;
+}
+
+.login-header h2 {
+    margin-bottom: 0.5rem;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input-group i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 0.75rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.demo-info {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+}
+
+/* View Page */
+.view-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    min-height: calc(100vh - 70px);
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.view-header h1 {
+    font-size: 2rem;
+    color: #1e293b;
+}
+
+.view-content {
+    line-height: 1.6;
+}
+
+.view-content img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.view-content video {
+    max-width: 100%;
+    border-radius: 0.5rem;
+}
+
+.view-content .file-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #f1f5f9;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: #3b82f6;
+    margin: 0.5rem 0;
+}
+
+.btn-edit {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+/* Tambahan untuk beranda */
+.folders-section {
+    margin-top: 2rem;
+}
+
+.folders-section h2 {
+    margin-bottom: 1.5rem;
+    color: #1e293b;
+    font-size: 1.5rem;
+}
+
+.folders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.folder-card, .doc-card-home {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.folder-card:hover, .doc-card-home:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.folder-icon i, .doc-icon i {
+    font-size: 2.5rem;
+}
+
+.folder-icon i {
+    color: #f59e0b;
+}
+
+.doc-icon i {
+    color: #3b82f6;
+}
+
+.folder-info h3, .doc-info h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+.folder-info p, .doc-info p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 0.75rem;
+    color: #94a3b8;
+    grid-column: 1 / -1;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Tambahan untuk back link */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #3b82f6;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Logout button */
+.logout-btn {
+    background: #ef4444;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* Admin badge */
+.admin-badge {
+    background: #fef3c7;
+    color: #d97706;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+

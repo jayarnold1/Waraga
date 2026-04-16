@@ -115,23 +115,3 @@ function updateAuthUI() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', updateAuthUI);
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Ubah ikon dari hamburger ke 'X' saat terbuka
-            const icon = menuToggle.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
-    }
-});

@@ -9,20 +9,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-layer-group"></i>
-                <span>Waraga</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="active">Beranda</a>
-                <a href="#" id="navDashboard" style="display:none;">Dashboard Admin</a>
-                <a href="login.html" id="navLogin" class="login-btn">Masuk sebagai Admin</a>
-                <a href="#" id="navLogout" style="display:none;" class="logout-btn">Keluar</a>
-            </div>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <i class="fas fa-layer-group"></i>
+            <span>Waraga</span>
         </div>
-    </nav>
+        
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Beranda</a>
+            <a href="#" id="navDashboard" style="display:none;">Dashboard Admin</a>
+            <a href="login.html" id="navLogin" class="login-btn">Masuk sebagai Admin</a>
+            <a href="#" id="navLogout" style="display:none;" class="logout-btn">Keluar</a>
+        </div>
+    </div>
+</nav>
 
     <main class="container">
         <div class="hero">
